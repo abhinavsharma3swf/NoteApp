@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: NoteApp
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/noteapp
+    username: noteapp
+    password: noteapp1
+
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+
+  flyway:
+    enabled: true
+    locations: classpath:db.migration
