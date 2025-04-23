@@ -8,7 +8,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
@@ -19,33 +21,57 @@ public class NoteServiceTest {
     @InjectMocks
     NoteService noteService;
 
-    Note newnote;
+    Note newNote;
     Note savedNote;
     List<Note> notes;
 
     @BeforeEach
     void setUp() {
-        Note newNote = new Note(1L, "Hello this is my first note");
-        Note savedNote = new Note(1L, "Hello this is my first note");
-
+        newNote = new Note(1L, "Hello this is my first note");
+        savedNote = new Note(1L, "Hello this is my first note");
+        notes = new ArrayList<>(List.of(newNote,savedNote));
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
     void createNote() {
-        when(noteRepository.save(newnote)).thenReturn(newnote);
-        Note newNote = new Note(1L, "Hello this is my first note");
-        Note actualRequest = noteService.createNote(newNote) ;
+        when(noteRepository.save(newNote)).thenReturn(newNote);
+        noteService.createNote(newNote);
         verify(noteRepository, times(1)).save(any(Note.class));
-        assertThat(newnote).isEqualTo(savedNote);
+        assertThat(newNote).isEqualTo(newNote);
     }
 
     @Test
     void deleteNote() {
-        Note deleteNote = new Note(1L, "delete");
-        deleteNote.setId(1L);
-        when(noteRepository.deleteNoteById(deleteNote.getId())).thenReturn(deleteNote.getId());
-        Mockito.verify(noteRepository, times(1)).deleteById(1L);
+        when(noteRepository.deleteNoteById(1L)).thenReturn(1L);
+        String message = noteService.deleteNote(1L);
+        verify(noteRepository, times (1)).deleteNoteById(1L);
+        assertThat(message).isEqualTo("Deleted");
     }
 
+    @Test
+    void deletedNote() {
+        when(noteRepository.deleteNoteById(1L)).thenReturn(0L);
+        String message = noteService.deleteNote(1L);
+        verify(noteRepository, times(1)).deleteNoteById(1L);
+        assertThat(message).isEqualTo("Not Found");
+    }
+
+    @Test
+    void editNote() {
+        Note updatedNote = new Note( 2L, "I am new note");
+        when(noteRepository.findById(1L)).thenReturn(Optional.of(newNote));
+        when(noteRepository.save(any(Note.class))).thenReturn(updatedNote);
+        Note result = noteService.editNote(1L, updatedNote);
+        assertThat(result.getId()).isEqualTo(2L);
+        assertThat(result.getText()).isEqualTo("I am new note");
+    }
+
+    @Test
+    void fetchNote() {
+        when(noteRepository.findAll()).thenReturn(notes);
+        List<Note> listofNoteRequest = noteService.fetchNote();
+        verify(noteRepository, times(1)).findAll();
+        assertThat(listofNoteRequest).isEqualTo(notes);
+    }
 }
