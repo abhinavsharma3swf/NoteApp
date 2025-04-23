@@ -15,7 +15,6 @@ public class NoteService {
     }
 
     public Note createNote( Note newNote){
-
         return noteRepository.save(newNote);
     }
 
@@ -35,4 +34,6 @@ public class NoteService {
     public List<Note> fetchNote() {
         return noteRepository.findAll();
     }
+
 }
+
