@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bridge.example.noteapp.NoteControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-04-23T16:27:29.689Z" hostname="RGCASWFA0309" time="0.075">
+  <properties/>
+  <testcase name="shouldAcceptPostRequestToCreateNote()" classname="com.bridge.example.noteapp.NoteControllerTest" time="0.075"/>
+  <system-out><![CDATA[11:27:28.833 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.bridge.example.noteapp.NoteControllerTest]: NoteControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+11:27:28.882 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.bridge.example.noteapp.NoteAppApplication for test class com.bridge.example.noteapp.NoteControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.4)
+
+2025-04-23T11:27:29.018-05:00  INFO 6239 --- [NoteApp] [    Test worker] c.b.example.noteapp.NoteControllerTest   : Starting NoteControllerTest using Java 17.0.13 with PID 6239 (started by a2439284 in /Users/a2439284/NoteApp)
+2025-04-23T11:27:29.019-05:00  INFO 6239 --- [NoteApp] [    Test worker] c.b.example.noteapp.NoteControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2025-04-23T11:27:29.670-05:00  INFO 6239 --- [NoteApp] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-04-23T11:27:29.670-05:00  INFO 6239 --- [NoteApp] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-04-23T11:27:29.671-05:00  INFO 6239 --- [NoteApp] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2025-04-23T11:27:29.686-05:00  INFO 6239 --- [NoteApp] [    Test worker] c.b.example.noteapp.NoteControllerTest   : Started NoteControllerTest in 0.778 seconds (process running for 1.131)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
