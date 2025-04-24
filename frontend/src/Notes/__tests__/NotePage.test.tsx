@@ -38,6 +38,8 @@ describe('NoteApp', () => {
         await userEvent.click(addButton);
         expect(mockCreateNote).toHaveBeenLastCalledWith(savedNote);
     });
+
+
 });
 
 

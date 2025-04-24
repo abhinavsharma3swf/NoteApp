@@ -1,6 +1,6 @@
 services:
   postgres-db:
-    container_name: postgres
+    container_name: Noteapp
     image: postgres
     restart: unless-stopped
     environment:

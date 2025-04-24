@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridge.example.noteapp.NoteControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-04-23T16:27:29.689Z" hostname="RGCASWFA0309" time="0.075">
+<testsuite name="com.bridge.example.noteapp.NoteControllerTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2025-04-23T19:50:00.032Z" hostname="RGCASWFA0309" time="0.095">
   <properties/>
-  <testcase name="shouldAcceptPostRequestToCreateNote()" classname="com.bridge.example.noteapp.NoteControllerTest" time="0.075"/>
-  <system-out><![CDATA[11:27:28.833 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.bridge.example.noteapp.NoteControllerTest]: NoteControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-11:27:28.882 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.bridge.example.noteapp.NoteAppApplication for test class com.bridge.example.noteapp.NoteControllerTest
+  <testcase name="shouldAcceptRequestToEditTheNote()" classname="com.bridge.example.noteapp.NoteControllerTest" time="0.095">
+    <failure message="org.mockito.exceptions.misusing.InvalidUseOfMatchersException: &#10;Invalid use of argument matchers!&#10;2 matchers expected, 1 recorded:&#10;-&gt; at com.bridge.example.noteapp.NoteControllerTest.shouldAcceptRequestToEditTheNote(NoteControllerTest.java:90)&#10;&#10;This exception may occur if matchers are combined with raw values:&#10;    //incorrect:&#10;    someMethod(any(), &quot;raw String&quot;);&#10;When using matchers, all arguments have to be provided by matchers.&#10;For example:&#10;    //correct:&#10;    someMethod(any(), eq(&quot;String by matcher&quot;));&#10;&#10;For more info see javadoc for Matchers class.&#10;" type="org.mockito.exceptions.misusing.InvalidUseOfMatchersException">org.mockito.exceptions.misusing.InvalidUseOfMatchersException: 
+Invalid use of argument matchers!
+2 matchers expected, 1 recorded:
+-&gt; at com.bridge.example.noteapp.NoteControllerTest.shouldAcceptRequestToEditTheNote(NoteControllerTest.java:90)
+
+This exception may occur if matchers are combined with raw values:
+    //incorrect:
+    someMethod(any(), &quot;raw String&quot;);
+When using matchers, all arguments have to be provided by matchers.
+For example:
+    //correct:
+    someMethod(any(), eq(&quot;String by matcher&quot;));
+
+For more info see javadoc for Matchers class.
+
+	at app//com.bridge.example.noteapp.NoteService.editNote(NoteService.java:28)
+	at app//com.bridge.example.noteapp.NoteControllerTest.shouldAcceptRequestToEditTheNote(NoteControllerTest.java:90)
+	at java.base@17.0.13/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base@17.0.13/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base@17.0.13/java.util.ArrayList.forEach(ArrayList.java:1511)
+</failure>
+  </testcase>
+  <system-out><![CDATA[14:49:58.957 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.bridge.example.noteapp.NoteControllerTest]: NoteControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+14:49:59.017 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.bridge.example.noteapp.NoteAppApplication for test class com.bridge.example.noteapp.NoteControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -14,12 +36,49 @@
 
  :: Spring Boot ::                (v3.4.4)
 
-2025-04-23T11:27:29.018-05:00  INFO 6239 --- [NoteApp] [    Test worker] c.b.example.noteapp.NoteControllerTest   : Starting NoteControllerTest using Java 17.0.13 with PID 6239 (started by a2439284 in /Users/a2439284/NoteApp)
-2025-04-23T11:27:29.019-05:00  INFO 6239 --- [NoteApp] [    Test worker] c.b.example.noteapp.NoteControllerTest   : No active profile set, falling back to 1 default profile: "default"
-2025-04-23T11:27:29.670-05:00  INFO 6239 --- [NoteApp] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2025-04-23T11:27:29.670-05:00  INFO 6239 --- [NoteApp] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2025-04-23T11:27:29.671-05:00  INFO 6239 --- [NoteApp] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
-2025-04-23T11:27:29.686-05:00  INFO 6239 --- [NoteApp] [    Test worker] c.b.example.noteapp.NoteControllerTest   : Started NoteControllerTest in 0.778 seconds (process running for 1.131)
+2025-04-23T14:49:59.185-05:00  INFO 11395 --- [NoteApp] [    Test worker] c.b.example.noteapp.NoteControllerTest   : Starting NoteControllerTest using Java 17.0.13 with PID 11395 (started by a2439284 in /Users/a2439284/NoteApp)
+2025-04-23T14:49:59.186-05:00  INFO 11395 --- [NoteApp] [    Test worker] c.b.example.noteapp.NoteControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2025-04-23T14:49:59.985-05:00  INFO 11395 --- [NoteApp] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-04-23T14:49:59.985-05:00  INFO 11395 --- [NoteApp] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-04-23T14:49:59.986-05:00  INFO 11395 --- [NoteApp] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2025-04-23T14:50:00.028-05:00  INFO 11395 --- [NoteApp] [    Test worker] c.b.example.noteapp.NoteControllerTest   : Started NoteControllerTest in 0.954 seconds (process running for 1.534)
+
+MockHttpServletRequest:
+      HTTP Method = PUT
+      Request URI = /api/noteapp/1
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"29"]
+             Body = {"id":1,"text":"Update note"}
+    Session Attrs = {}
+
+Handler:
+             Type = com.bridge.example.noteapp.NoteController
+           Method = com.bridge.example.noteapp.NoteController#editNote(Long, Note)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:"application/json"]
+     Content type = application/json
+             Body = {"id":1,"text":"Update note"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
