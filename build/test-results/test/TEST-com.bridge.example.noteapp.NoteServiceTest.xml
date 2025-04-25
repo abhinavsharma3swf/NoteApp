@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bridge.example.noteapp.NoteServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-04-24T21:06:50.322Z" hostname="RGCASWFA0309" time="0.53">
+  <properties/>
+  <testcase name="createNote()" classname="com.bridge.example.noteapp.NoteServiceTest" time="0.53"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

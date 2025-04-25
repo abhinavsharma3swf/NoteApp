@@ -8,6 +8,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,9 +28,12 @@ public class NoteServiceTest {
     List<Note> notes;
 
     @BeforeEach
-    void setUp() {
-        newNote = new Note(1L, "Hello this is my first note");
-        savedNote = new Note(1L, "Hello this is my first note");
+    void setUp() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        newNote = new Note("New note", sdf.parse("03-04-2024").toInstant(), 5, .30);
+        newNote.setId(1L);
+        savedNote = new Note("New note", sdf.parse("03-04-2024").toInstant(), 5, .30);
+        savedNote.setId(1L);
         notes = new ArrayList<>(List.of(newNote,savedNote));
         MockitoAnnotations.openMocks(this);
     }
@@ -58,8 +63,9 @@ public class NoteServiceTest {
     }
 
     @Test
-    void editNote() {
-        Note updatedNote = new Note( 2L, "I am new note");
+    void editNote() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Note updatedNote = new Note("New note", sdf.parse("03-04-2024").toInstant(), 5, .30);
         when(noteRepository.findById(1L)).thenReturn(Optional.of(newNote));
         when(noteRepository.save(any(Note.class))).thenReturn(updatedNote);
         Note result = noteService.editNote(1L, updatedNote);

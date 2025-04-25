@@ -6,9 +6,10 @@ import {userEvent} from "@testing-library/user-event";
 
 describe('NoteApp', () => {
 
-    it('should display the Notes App page', () => {
+    it('should display the Notes App page and the form', () => {
         render(<Notes/>)
         expect(screen.getByRole('heading', {name: /Your Daily Notes/i} )).toBeVisible()
+        expect(screen.getByLabelText('form')).toBeVisible()
     })
 
     it('should have an add button for new notes, it should have a delete button and it should have an edit button', () =>{
@@ -18,10 +19,12 @@ describe('NoteApp', () => {
         expect(screen.getByRole('button', {name: /Delete Note/i})).toBeVisible()
     })
 
-    it('should display the text input box', async () => {
+    it('should display the text input box, date, importance and the completion percentage', async () => {
         render(<Notes/>)
-        const textInput = screen.getByPlaceholderText('Note');
+        const textInput = screen.getByPlaceholderText('Input your notes');
         expect(textInput).toBeVisible();
+        expect(screen.getByPlaceholderText('Importance number')).toBeVisible();
+        expect(screen.getByPlaceholderText('Completion Status')).toBeVisible();
     })
 
 
@@ -29,16 +32,15 @@ describe('NoteApp', () => {
     it('should add the new note', async () => {
         const savedNote = 'Hello this is my new note';
         const mockCreateNote = vi.spyOn(NoteAppService, 'createNote')
-            .mockResolvedValueOnce({id: 1, text: savedNote})
+            .mockResolvedValueOnce({id: 1, text: savedNote, date: new Date(), importance: 5, completion: 10})
         render(<Notes/>);
-        const textInput = screen.getByPlaceholderText('Note');
+        const textInput = screen.getByPlaceholderText('Input your notes');
         expect(textInput).toBeVisible();
         const addButton = screen.getByRole('button', {name: /add/i})
         await userEvent.type(textInput, savedNote);
         await userEvent.click(addButton);
         expect(mockCreateNote).toHaveBeenLastCalledWith(savedNote);
     });
-
 
 });
 

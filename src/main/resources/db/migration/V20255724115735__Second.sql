@@ -1,0 +1,8 @@
+ALTER TABLE note
+    ADD completion DOUBLE PRECISION;
+
+ALTER TABLE note
+    ADD date TIMESTAMP WITHOUT TIME ZONE;
+
+ALTER TABLE note
+    ADD importance INTEGER;

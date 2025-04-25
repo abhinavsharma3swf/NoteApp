@@ -2,6 +2,8 @@ package com.bridge.example.noteapp;
 
 import jakarta.persistence.*;
 
+import java.time.Instant;
+
 @Entity
 @Table(name = "Note")
 
@@ -10,6 +12,9 @@ public class Note {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String text;
+    private Instant date;
+    private Integer importance;
+    private Double completion;
 
     public Note() {
 
@@ -31,8 +36,34 @@ public class Note {
         this.text = text;
     }
 
-    public Note(Long id, String text) {
-        this.id = id;
+    public Instant getDate() {
+        return date;
+    }
+
+    public void setDate(Instant date) {
+        this.date = date;
+    }
+
+    public Integer getImportance() {
+        return importance;
+    }
+
+    public void setImportance(Integer importance) {
+        this.importance = importance;
+    }
+
+    public Double getCompletion() {
+        return completion;
+    }
+
+    public void setCompletion(Double completion) {
+        this.completion = completion;
+    }
+
+    public Note(String text, Instant date, Integer rating, Double completion) {
         this.text = text;
+        this.date = date;
+        this.importance = rating;
+        this.completion = completion;
     }
 }
