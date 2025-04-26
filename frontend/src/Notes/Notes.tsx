@@ -1,12 +1,15 @@
 
-import {createNote, fetchNote} from "./NoteAppService.tsx";
+import {createNote, deleteNote, fetchNote} from "./NoteAppService.tsx";
 import {Note} from './Note.ts';
-import {useState} from "react";
+import {useEffect, useState} from "react";
+
+
 
 
 export const Notes = () => {
 const [note, setNote] = useState<Note[]>([]);
-const [newNote, setNewNote] = useState<Omit<Note, "id">>({
+const [newNote, setNewNote] = useState<Note>({
+    id: null,
     text: "",
     date: new Date(),
     importance: 0,
@@ -14,23 +17,28 @@ const [newNote, setNewNote] = useState<Omit<Note, "id">>({
 });
 
 
+
 function fetch() {
     fetchNote().then(setNote)
+    console.log(note);
 }
 
 function handleClick(e:any) {
     e.preventDefault()
     console.log("Sending note:", newNote);
-    const noteswithId: Note = {...newNote, id: null};
-    setNote([noteswithId]);
-    // setNewNote({text: "", date: new Date(), completion: 0, importance: 0})
-    createNote(newNote.text, new Date().getTime()/1000, newNote.importance, newNote.completion).then(() => {
-        fetch();
-        })
-    }
+    createNote(newNote).then(() => fetch())
+}
 
-    return(
+const handleDelete = (id: number) => {
+if (id === null) return; // Avoid trying to delete without a valid ID
+deleteNote(id).then(() => fetch());
+console.log(id);
+};
 
+
+
+
+return(
         <div>
             <h1>Your Daily Notes </h1>
             <form onSubmit={handleClick} className="from" aria-label='form' method='post' id='form'>
@@ -56,7 +64,6 @@ function handleClick(e:any) {
                     />
 
                     <input
-                        id='completion'
                         type='number'
                         className='formInputStyle'
                         value={newNote.completion}
@@ -64,18 +71,46 @@ function handleClick(e:any) {
                         onChange={(e) => setNewNote({...newNote, completion: Number(e.target.value)})}
                     />
                 </label>
-
                 <button type={"submit"}>Add New</button>
             </form>
-
-
-            <button>Edit Note</button>
-            <button>Delete Note</button>
             <button onClick={fetch}>View All Note</button>
+            <button>Edit Note</button>
 
-            <p>
-                {note.map((el, i) => {return <span key={i}>{el.text}</span>})}
-            </p>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID </th>
+                    <th> Notes</th>
+                    <th> Importance</th>
+                    <th> Completion</th>
+                </tr>
+                </thead>
+                <tbody>
+                {note.map((el, i)=> (
+                    <tr>
+                    <td key={i}> {el.id}</td>
+                    <td>{el.text}</td>
+                    <td>{el.importance}</td>
+                    <td>{el.completion}</td>
+                    <td><button onClick={() => handleDelete(el.id)}>Delete Note</button></td>
+                </tr>))}
+                </tbody>
+            </table>
+
+
+                        {/*<td>{note.map((element, index) => {return <span key={index}>{element.date}</span>})}*/}
+                        {/*</td>*/}
+
+
+
+
+
+
+
+
+
+
 
         </div>
     )

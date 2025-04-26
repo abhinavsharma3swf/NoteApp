@@ -13,6 +13,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@material-tailwind/html": "^3.0.0-beta.7",
     "@tailwindcss/vite": "^4.1.4",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",

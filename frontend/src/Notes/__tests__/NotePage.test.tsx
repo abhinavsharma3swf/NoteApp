@@ -19,7 +19,7 @@ describe('NoteApp', () => {
         expect(screen.getByRole('button', {name: /Delete Note/i})).toBeVisible()
     })
 
-    it('should display the text input box, date, importance and the completion percentage', async () => {
+    it('should display the text input box, date, importance and the completion', async () => {
         render(<Notes/>)
         const textInput = screen.getByPlaceholderText('Input your notes');
         expect(textInput).toBeVisible();
@@ -30,17 +30,39 @@ describe('NoteApp', () => {
 
 
     it('should add the new note', async () => {
-        const savedNote = 'Hello this is my new note';
+        const savedNote = {
+                id: null,
+            date: expect.any(Date),
+            text: "Empty",
+            importance: 0,
+            completion: 0
+            };
         const mockCreateNote = vi.spyOn(NoteAppService, 'createNote')
-            .mockResolvedValueOnce({id: 1, text: savedNote, date: new Date(), importance: 5, completion: 10})
+            .mockResolvedValueOnce(savedNote)
         render(<Notes/>);
         const textInput = screen.getByPlaceholderText('Input your notes');
         expect(textInput).toBeVisible();
         const addButton = screen.getByRole('button', {name: /add/i})
-        await userEvent.type(textInput, savedNote);
+        await userEvent.type(textInput, "Empty");
         await userEvent.click(addButton);
         expect(mockCreateNote).toHaveBeenLastCalledWith(savedNote);
     });
+
+    it('should display all of the notes', async () => {
+        const viewNote = [{
+                id: null,
+                date: new Date("2025-02-04"),
+                text: "Empty",
+                importance: 0,
+                completion: 0
+            }];
+        const mockViewNote = vi.spyOn(NoteAppService, 'fetchNote').mockResolvedValueOnce(viewNote)
+        render(<Notes/>)
+        const viewButton = screen.getByRole('button', {name: /View All Note/i})
+        await userEvent.click(viewButton)
+        expect(mockViewNote).toHaveBeenCalledOnce();
+    });
+
 
 });
 
